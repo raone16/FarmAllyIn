@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">FarmAlly</string>
+    <string-array name="type_array">
+        <item>Cereals</item>
+        <item>Pulses</item>
+        <item>Vegetables</item>
+        <item>Spices</item>
+        <item>Fruits</item>
+
+
+    </string-array>
+</resources>
