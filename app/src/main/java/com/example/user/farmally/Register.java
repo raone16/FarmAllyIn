@@ -15,11 +15,14 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
+import android.widget.RadioGroup;
 
 public class Register extends AppCompatActivity {
     EditText E1,E2,E3,E4,E5,E6;
     Button B1;
     SQLiteDatabase db;
+    RadioGroup rg;
+    RadioButton rb;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +37,7 @@ public class Register extends AppCompatActivity {
 
 
         B1=(Button)findViewById(R.id.B1);
+        rg=(RadioGroup)findViewById(R.id.radioGroup);
         db=openOrCreateDatabase("ACCDB", Context.MODE_PRIVATE,null);
    /* public void RadioButtonClicked(View view){
 
@@ -42,34 +46,24 @@ public class Register extends AppCompatActivity {
 
 
         B1.setOnClickListener(new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
+            @Override
+            public void onClick(View v) {
 
-            String name = E1.getText().toString();
-            String age = E2.getText().toString();
-            String usrname = E3.getText().toString();
-            String pswd = E4.getText().toString();
-            String phone = E6.getText().toString();
-            String Addr = E5.getText().toString();
-            String type =" ";
+                String name = E1.getText().toString();
+                String age = E2.getText().toString();
+                String usrname = E3.getText().toString();
+                String pswd = E4.getText().toString();
+                String phone = E6.getText().toString();
+                String Addr = E5.getText().toString();
+                String type =" ";
 
-           boolean checked = ((RadioButton)v).isChecked();
-            switch(v.getId()){
-                case R.id.radioButton1:
-                    if(checked)
-                        type = "f";
-                    break;
-                case R.id.radioButton2:
-                    if(checked)
-                        type = "c";
-                    break;
-            }
+                int selectedId=rg.getCheckedRadioButtonId();
+                rb=(RadioButton)findViewById(selectedId);
+                type = (String) rb.getText();
 
+                Cursor c = db.rawQuery("SELECT * FROM LOGIN WHERE UNAME='" + usrname + "'", null);
 
-            Cursor c = db.rawQuery("SELECT COUNT(*) FROM LOGIN WHERE UNAME='" + usrname + "'", null);
-            if(!c.moveToFirst())
-            {
-                if(c.getInt(0)==0)
+                if(!c.moveToFirst())
                 {
                     db.execSQL("INSERT INTO LOGIN VALUES('" + name + "','" + age +
                             "','" + usrname + "','" + pswd + "','"+ Addr +"','" +type +"','"+phone+"');");
@@ -79,11 +73,12 @@ public class Register extends AppCompatActivity {
                     startActivity(intent);
                 }
                 else
+                {
                     showMessage("Error","UserName not available");
+                }
             }
-        }
-    });
-}
+        });
+    }
 
     public void showMessage(String title,String message)
     {

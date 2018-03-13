@@ -99,22 +99,27 @@
             android:layout_height="wrap_content"
             android:text="Type Of User"
             />
-
-        <RadioButton
-            android:id="@+id/radioButton1"
-            android:layout_width="match_parent"
+        <RadioGroup
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Farmer"
-            android:layout_marginRight="8dp"
-            android:layout_marginLeft="8dp"
-            />
+            android:orientation="horizontal"
+            android:id="@+id/radioGroup">
+            <RadioButton
+                android:id="@+id/radioButton1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Farmer"
+                android:layout_marginRight="8dp"
+                android:layout_marginLeft="8dp"
+                />
 
-        <RadioButton
-            android:id="@+id/radioButton2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Customer"
-            />
+            <RadioButton
+                android:id="@+id/radioButton2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Customer"
+                />
+        </RadioGroup>
 
 
     </LinearLayout>
