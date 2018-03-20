@@ -13,10 +13,10 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
-EditText e1,e2;
-Button b1;
-TextView l1;
-SQLiteDatabase db;
+    EditText e1,e2;
+    Button b1;
+    TextView l1;
+    SQLiteDatabase db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +31,7 @@ SQLiteDatabase db;
 
         db=openOrCreateDatabase("ACCDB", Context.MODE_PRIVATE,null);
         db.execSQL("CREATE TABLE IF NOT EXISTS LOGIN(NAME VARCHAR,AGE VARCHAR,UNAME VARCHAR,PWORD VARCHAR,ADDR VARCHAR,TYPE VARCHAR,PHONE VARCHAR);");
+
         b1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

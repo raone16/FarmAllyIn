@@ -1,20 +1,21 @@
 package com.example.user.farmally;
 
+import android.app.AlertDialog;
+import android.content.Context;
+import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Spinner;
 
 public class AddProduct extends AppCompatActivity {
-    String[] Ctype = {"Cereals","Pulses","Vegetables","Spices","Fruits"};
-    String[] Cereals = {"Rice","Ragi","Paddy","Wheat"};
-    String[] Pulses = {"Bengal Gram","Black Gram"};
-    String[] Veg = {"Bottle Gourd","Brinjal","Cabbage","Onion","Tomato"};
-    String[] Spices = {"Garlic","Ginger","Clove","Pepper","Bay Leaf"};
-    String[] Fruits = {"Banana","Mango","Papaya","PineApple","Water Melon"};
-    Spinner S1,S2;
+   EditText type,comm,qua,price;
+    SQLiteDatabase db;
+    Button Add;
 
 
 
@@ -22,39 +23,35 @@ public class AddProduct extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_product);
-        S1=(Spinner) findViewById(R.id.spinner1);
-        S2=(Spinner) findViewById(R.id.spinner2);
-        ArrayAdapter<String> typeAd= new ArrayAdapter<String>(getApplicationContext(),android.R.layout.simple_list_item_1,Ctype);
-        final ArrayAdapter<String> cAd = new ArrayAdapter<String>(getApplicationContext(),android.R.layout.simple_list_item_1,Cereals);
-        final ArrayAdapter<String> pAd = new ArrayAdapter<String>(getApplicationContext(),android.R.layout.simple_list_item_1,Pulses);
-        final ArrayAdapter<String> vAd = new ArrayAdapter<String>(getApplicationContext(),android.R.layout.simple_list_item_1,Veg);
-        final ArrayAdapter<String> sAd = new ArrayAdapter<String>(getApplicationContext(),android.R.layout.simple_list_item_1,Spices);
-        final ArrayAdapter<String> fAd = new ArrayAdapter<String>(getApplicationContext(),android.R.layout.simple_list_item_1,Fruits);
-        S1.setAdapter(typeAd);
-        S1.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        type = (EditText) findViewById(R.id.type);
+        comm = (EditText) findViewById(R.id.comm);
+        qua = (EditText) findViewById(R.id.qua);
+        price = (EditText) findViewById(R.id.price);
+        Add = (Button) findViewById(R.id.Add);
+        db=openOrCreateDatabase("ACCDB", Context.MODE_PRIVATE,null);
+        Add.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                switch (i){
-                    case 0:
-                        S2.setAdapter(cAd);
-                        break;
-                    case 1:
-                        S2.setAdapter(pAd);
-                        break;
-                    case 2:
-                        S2.setAdapter(vAd);
-                        break;
-                    case 3:
-                        S2.setAdapter(sAd);
-                        break;
-                    case 4:
-                        S2.setAdapter(fAd);
-                        break;
-                }
+            public void onClick(View view) {
+                String Type = type.getText().toString();
+                String Comm = comm.getText().toString();
+                String Quant = qua.getText().toString();
+                String Price = price.getText().toString();
+                db.execSQL("INSERT INTO PRODUCT VALUES('" + Type + "','" + Comm + "','" + Quant + "','" + Price + "');");
+                showMessage("Success","Product added successfully");
+
+
+
             }
         });
 
 
 
+    }
+    public void showMessage(String title,String message)
+    {
+        AlertDialog.Builder builder=new AlertDialog.Builder(this);
+        builder.setTitle(title);
+        builder.setMessage(message);
+        builder.show();
     }
 }

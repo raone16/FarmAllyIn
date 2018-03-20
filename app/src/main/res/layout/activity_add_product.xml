@@ -13,8 +13,8 @@
         android:text="Type"
         />
 
-    <Spinner
-        android:id="@+id/spinner1"
+    <EditText
+        android:id="@+id/type"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
@@ -25,28 +25,21 @@
         android:layout_height="wrap_content"
         android:text="Commodity"
         />
-    <Spinner
-        android:id="@+id/spinner2"
+    <EditText
+        android:id="@+id/comm"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"/>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Harvested ON"
-        />
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"/>
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Quantity in Kg"
         />
     <EditText
+        android:id="@+id/qua"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"/>
@@ -55,7 +48,13 @@
         android:layout_height="wrap_content"
         android:text="Price per Kg in INR"/>
     <EditText
+        android:id ="@+id/price"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"/>
+    <Button
+        android:id="@+id/Add"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="add"/>
 </LinearLayout>
