@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/FarmAlly.iml" filepath="$PROJECT_DIR$/FarmAlly.iml" />
+      <module fileurl="file://$PROJECT_DIR$/FarmAllyIn.iml" filepath="$PROJECT_DIR$/FarmAllyIn.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>
